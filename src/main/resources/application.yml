@@ -1,0 +1,69 @@
+spring.jackson.serialization.INDENT_OUTPUT: true
+
+logging.level:
+  org.springframework: ERROR
+  org.elasticsearch: ERROR
+  org.hibernate: ERROR
+  io.undertow: ERROR
+  org.xnio: ERROR
+  org.apache: ERROR
+  org.hibernate.SQL: DEBUG
+  org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+
+spring:
+  datasource:
+    platform: postgres
+    url: "jdbc:postgresql://localhost:5432/oguzhankaracullu"
+#  data:
+#    elasticsearch:
+#      cluster-name: oguz-cluster
+
+
+spring.jpa.hibernate.ddl-auto: update
+
+
+server:
+  port: 8080
+  address: 127.0.0.1
+
+management:
+  port: 8081
+  context-path: /details
+  address: 127.0.0.1
+  security:
+    enabled: true
+
+
+security:
+  basic:
+    enabled: false
+  user:
+    name: admin
+    password: admin
+
+endpoints:
+  health:
+    id: health
+    sensitive: true
+    enabled: true
+
+  metrics:
+    id: metrics
+    sensitive: true
+    enabled: true
+
+  server:
+    id: server
+    sensitive: false
+    enabled: true
+
+  info:
+    id: info
+    sensitive: false
+    enabled: true
+info:
+  app:
+    name: Spring Boot Kotlin Restful
+    description: Spring Boot Kotlin Actuator Working Examples
+    version: 0.1

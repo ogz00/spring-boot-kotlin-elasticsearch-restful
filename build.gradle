@@ -1,0 +1,68 @@
+buildscript {
+	ext {
+		kotlinVersion = '1.1.2-4'
+		springBootVersion = '1.5.4.RELEASE'
+	}
+	repositories {
+		jcenter()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+		classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+	}
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+version = '0.1'
+sourceCompatibility = 1.8
+compileKotlin {
+	kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+	kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+	jcenter()
+	mavenCentral()
+
+}
+
+sourceSets {
+	main.java.srcDirs += 'src/main/kotlin'
+}
+
+
+dependencies {
+	compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+	compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+	compile('org.springframework.boot:spring-boot-starter')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-security')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('com.google.code.gson:gson:2.8.0')
+	runtime('org.postgresql:postgresql')
+	compile('net.java.dev.jna:jna')
+
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+springBoot {
+	mainClass = 'com.oguz.kotlin.DemoApplicationKt'
+}
+
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '3.5'
+}
