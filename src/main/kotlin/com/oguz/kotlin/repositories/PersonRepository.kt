@@ -1,6 +1,6 @@
-package com.oguz.kotlin.Repositories
+package com.oguz.kotlin.repositories
 
-import com.oguz.kotlin.Model.Person
+import com.oguz.kotlin.model.Person
 import org.springframework.data.repository.PagingAndSortingRepository
 import org.springframework.data.rest.core.annotation.RepositoryRestResource
 

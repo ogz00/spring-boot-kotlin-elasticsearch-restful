@@ -1,7 +1,7 @@
-package com.oguz.kotlin.Service
+package com.oguz.kotlin.service
 
-import com.oguz.kotlin.Model.Person
-import com.oguz.kotlin.Repositories.PersonRepository
+import com.oguz.kotlin.model.Person
+import com.oguz.kotlin.repositories.PersonRepository
 import org.springframework.stereotype.Service
 
 /**
@@ -17,7 +17,9 @@ class PersonServiceImpl(val personRepository: PersonRepository) : PersonService 
 
     override fun getCount(): Long = personRepository.count()
 
-    override fun createPerson(person: Person): Person? = personRepository.save(person)
+    override fun createPerson(person: Person): Person? {
+        return personRepository.save(person)
+    }
 
     override fun editPerson(person: Person): Person? = personRepository.save(person)
 

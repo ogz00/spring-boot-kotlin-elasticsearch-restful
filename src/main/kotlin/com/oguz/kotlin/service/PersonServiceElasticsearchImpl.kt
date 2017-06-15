@@ -1,13 +1,14 @@
-package com.oguz.kotlin.Service
+package com.oguz.kotlin.service
 
-import com.oguz.kotlin.Model.Person
-//import com.oguz.kotlin.Repositories.PersonElasticRepository
+import com.oguz.kotlin.model.Person
+import com.oguz.kotlin.repositories.PersonElasticRepository
+import org.springframework.stereotype.Service
 
 /**
  * Created by oguzhankaracullu on 12/06/2017.
  */
-/*
-class PersonSericeElasticsearchImpl(val personElasticRepository: PersonElasticRepository) : PersonService {
+@Service
+class PersonServiceElasticsearchImpl(val personElasticRepository: PersonElasticRepository) : PersonService {
     override fun getAllPeople(): MutableIterable<Person>? {
         return personElasticRepository.findAll()
     }
@@ -35,4 +36,4 @@ class PersonSericeElasticsearchImpl(val personElasticRepository: PersonElasticRe
     override fun findByName(name: String): MutableIterable<Person>? {
        return personElasticRepository.findByName(name)
     }
-}*/
+}

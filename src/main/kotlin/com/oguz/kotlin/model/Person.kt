@@ -1,10 +1,9 @@
-package com.oguz.kotlin.Model
+package com.oguz.kotlin.model
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.google.gson.annotations.SerializedName
 import org.hibernate.annotations.GenericGenerator
-import org.springframework.data.elasticsearch.annotations.Document
 import java.util.*
 import javax.persistence.*
 

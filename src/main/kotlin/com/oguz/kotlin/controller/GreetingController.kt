@@ -1,6 +1,6 @@
-package com.oguz.kotlin.Controller
+package com.oguz.kotlin.controller
 
-import com.oguz.kotlin.Model.Greeting
+import com.oguz.kotlin.model.Greeting
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController

@@ -1,8 +1,9 @@
-package com.oguz.kotlin.Controller
+package com.oguz.kotlin.controller
 
 import com.google.gson.Gson
-import com.oguz.kotlin.Model.Person
-import com.oguz.kotlin.Service.PersonServiceImpl
+import com.oguz.kotlin.model.Person
+import com.oguz.kotlin.service.PersonServiceElasticsearchImpl
+import com.oguz.kotlin.service.PersonServiceImpl
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -15,12 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping
  */
 @RestController
 @RequestMapping("/person")
-class PersonController(val personServiceImpl: PersonServiceImpl) {
+class PersonController(val personServiceImpl: PersonServiceImpl, val personServiceElasticsearchImpl: PersonServiceElasticsearchImpl) {
 
 
     @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/all")
     fun person(): MutableIterable<Person>? {
-        return personServiceImpl.getAllPeople()
+        if (personServiceElasticsearchImpl.getAllPeople()?.toList()?.isNotEmpty() as Boolean) {
+            return personServiceElasticsearchImpl.getAllPeople()
+        } else
+            return personServiceImpl.getAllPeople()
     }
 
     @Throws(Exception::class)
@@ -29,6 +33,7 @@ class PersonController(val personServiceImpl: PersonServiceImpl) {
 
         val created: Person = Gson().fromJson(person, Person::class.java)
         personServiceImpl.createPerson(created)
+        personServiceElasticsearchImpl.createPerson(created)
         return ResponseEntity.ok(created)
 
 
@@ -37,7 +42,7 @@ class PersonController(val personServiceImpl: PersonServiceImpl) {
 
     @Throws(Exception::class)
     @RequestMapping(value = "{username}", method = arrayOf(RequestMethod.GET), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
-    @ResponseBody fun getPersonWithUsername(@PathVariable username: String): Person{
+    @ResponseBody fun getPersonWithUsername(@PathVariable username: String): Person {
         return personServiceImpl.findByUsername(username)!!
 
     }

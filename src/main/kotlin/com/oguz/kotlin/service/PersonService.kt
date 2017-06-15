@@ -1,6 +1,6 @@
-package com.oguz.kotlin.Service
+package com.oguz.kotlin.service
 
-import com.oguz.kotlin.Model.Person
+import com.oguz.kotlin.model.Person
 
 /**
  * Created by oguzhankaracullu on 12/06/2017.

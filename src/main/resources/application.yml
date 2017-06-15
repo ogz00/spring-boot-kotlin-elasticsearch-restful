@@ -15,9 +15,14 @@ spring:
   datasource:
     platform: postgres
     url: "jdbc:postgresql://localhost:5432/oguzhankaracullu"
-#  data:
-#    elasticsearch:
-#      cluster-name: oguz-cluster
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster-ogz00
+      cluster-nodes: localhost:9300
+      repositories:
+        enabled: true
+      properties:
+        transport.tcp.connect_timeout: 60s
 
 
 spring.jpa.hibernate.ddl-auto: update

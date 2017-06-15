@@ -1,4 +1,4 @@
-package com.oguz.kotlin.Controller
+package com.oguz.kotlin.controller
 
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.http.ResponseEntity
