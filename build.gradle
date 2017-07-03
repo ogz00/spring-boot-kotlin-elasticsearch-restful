@@ -20,6 +20,13 @@ apply plugin: 'kotlin-spring'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
+repositories {
+	mavenCentral()
+	maven {
+		url "https://artifacts.elastic.co/maven"
+	}
+}
+
 version = '0.1'
 sourceCompatibility = 1.8
 compileKotlin {
@@ -47,6 +54,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
+	compile 'org.elasticsearch.client:rest:5.4.3'
+	compile 'org.elasticsearch.client:sniffer:5.4.3'
+	// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
+	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.8.2'
+	compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.8.2'
+	// https://mvnrepository.com/artifact/org.elasticsearch.client/transport
+	compile group: 'org.elasticsearch.client', name: 'transport', version: '5.4.1'
+	compile('org.elasticsearch.client:x-pack-transport:5.4.1')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-security')
 	compile('org.springframework.boot:spring-boot-starter-actuator')

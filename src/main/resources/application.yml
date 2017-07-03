@@ -18,11 +18,15 @@ spring:
   data:
     elasticsearch:
       cluster-name: docker-cluster-ogz00
-      cluster-nodes: localhost:9300
+      cluster-nodes: localhost:9200
       repositories:
         enabled: true
       properties:
         transport.tcp.connect_timeout: 60s
+    rest:
+      return-body-on-create: true
+      return-body-on-update: true
+
 
 
 spring.jpa.hibernate.ddl-auto: update
@@ -69,6 +73,6 @@ endpoints:
     enabled: true
 info:
   app:
-    name: Spring Boot Kotlin Restful
-    description: Spring Boot Kotlin Actuator Working Examples
+    name: Spring Boot Elasticsearch Kotlin Restful
+    description: Spring Boot Kotlin Elastcisearch Actuator Working Examples
     version: 0.1
