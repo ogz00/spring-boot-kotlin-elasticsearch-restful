@@ -96,7 +96,7 @@ curl -XPUT -u elastic:changeme 'localhost:9200/people_1_june/people_type' -H 'Co
 *curl -H "Content-Type: application/json" -X POST -d 
 '{"name": "Oguzhan","surname": "Karacullu","username": "oguz00","age": 27}' http://localhost:8080/person*
 
-### Get All Person from ES index wşth Java Api if exist, else getter from local PostgreSql DB
+### Get All Person from ES index with Java Api if exist, else getter from local PostgreSql DB
 *curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET 'http://localhost:8080/person/all'*
 
 ### spring-boot-kotlin-actuator
