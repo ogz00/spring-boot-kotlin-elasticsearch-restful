@@ -1,6 +1,6 @@
 # spring-boot-kotlin-elasticsearch-restful
 
-**Spring Boot** **Kotlin**  Application Example with **Spring-Data-Jpa** and **Elasticsearch Java API** in **Docker ** container. 
+**Spring Boot** **Kotlin**  Application Example with **Spring-Data-Jpa** and **Elasticsearch Java API** in **Docker** container. 
 
 Also **Spring Actuator** integretion with Kotlin.
 
