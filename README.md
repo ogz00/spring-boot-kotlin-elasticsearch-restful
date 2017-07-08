@@ -8,6 +8,7 @@ Also **Spring Actuator** integretion with Kotlin.
 
 ### Elasticsearch Create Index Template
 Create an Elasticsearch Template with following command: 
+
 curl -XPUT -u elastic:changeme 'localhost:9200/_template/people_1?pretty' -H 'Content-Type: application/json' -d'                                                                                              
 {    
   "template": "people_1_*",
@@ -70,6 +71,7 @@ curl -XPUT -u elastic:changeme 'localhost:9200/_template/people_1?pretty' -H 'Co
 }
 '
 ### Elasticsearch post new document to *people_1_june* index
+
 curl -XPUT -u elastic:changeme 'localhost:9200/people_1_june/people_type' -H 'Content-Type: application/json' -d'
     {
         "id": "3d7797e5-736f-441a-8a13-9a997ee71e17",
