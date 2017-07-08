@@ -1,0 +1,51 @@
+version: '2'
+services:
+  elasticsearch1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    container_name: elasticsearch1
+    environment:
+      - cluster.name=docker-cluster-ogz00
+      - bootstrap.memory_lock=true
+      - node.name=data-node-01
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    volumes:
+      - esdata1:/User/oguzhankaracullu/es-docker/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - esnet
+  elasticsearch2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+    container_name: elasticsearch2
+    environment:
+      - cluster.name=docker-cluster-ogz00
+      - bootstrap.memory_lock=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - node.name=data-node-02
+      - "discovery.zen.ping.unicast.hosts=elasticsearch1"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    mem_limit: 1g
+    volumes:
+      - esdata2:/User/oguzhankaracullu/es-docker/data
+    networks:
+      - esnet
+
+volumes:
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+
+networks:
+  esnet:
