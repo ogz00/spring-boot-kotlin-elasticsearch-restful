@@ -1,10 +1,10 @@
 # spring-boot-kotlin-elasticsearch-restful
 
-Spring Boot **Kotlin**  Application Example with **Spring-Data-Jpa** and **Elasticsearch**. 
+**Spring Boot** **Kotlin**  Application Example with **Spring-Data-Jpa** and **Elasticsearch Java API**. 
 
 Also **Spring Actuator** integretion with Kotlin.
 
-* S
+
 
 ### Elasticsearch Create Index Template
 Create an Elasticsearch Template with following command: 
