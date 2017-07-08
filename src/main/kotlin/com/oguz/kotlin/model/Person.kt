@@ -4,14 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.google.gson.annotations.SerializedName
 import org.hibernate.annotations.GenericGenerator
-import org.springframework.data.elasticsearch.annotations.Document
 import java.util.*
 import javax.persistence.*
 
 /**
  * Created by oguzhankaracullu on 11/06/2017.
  */
-@Document(indexName = "people_1_june", type = "people_type", createIndex = true )
+//@Document(indexName = "people_1_june", type = "people_type", createIndex = true )
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "people", uniqueConstraints = arrayOf(UniqueConstraint(columnNames = arrayOf("username"))))

@@ -1,9 +1,11 @@
 package com.oguz.kotlin.controller
 
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.oguz.kotlin.client.ESPersonClient
 import com.oguz.kotlin.model.Person
-import com.oguz.kotlin.service.PersonServiceElasticsearchImpl
 import com.oguz.kotlin.service.PersonServiceImpl
+import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -16,15 +18,30 @@ import org.springframework.web.bind.annotation.RequestMapping
  */
 @RestController
 @RequestMapping("/person")
-class PersonController(val personServiceImpl: PersonServiceImpl, val personServiceElasticsearchImpl: PersonServiceElasticsearchImpl) {
+class PersonController(val personServiceImpl: PersonServiceImpl, val esPersonClient: ESPersonClient) {
 
 
     @RequestMapping(method = arrayOf(RequestMethod.GET), value = "/all")
-    fun person(): MutableIterable<Person>? {
-        if (personServiceElasticsearchImpl.getAllPeople()?.toList()?.isNotEmpty() as Boolean) {
-            return personServiceElasticsearchImpl.getAllPeople()
-        } else
-            return personServiceImpl.getAllPeople()
+    fun person(): ResponseEntity<*> {
+
+        val gson: Gson = GsonBuilder().create()
+        var results = ArrayList<Person>()
+
+        try {
+            val hits = esPersonClient.searchAll()?.hits?.hits
+
+            if (hits != null && hits.isNotEmpty()) {
+                hits.mapTo(results) { gson.fromJson(it.sourceAsString, Person::class.java) }
+                return ResponseEntity.ok(gson.toJson(results))
+            }
+            else
+                return ResponseEntity.ok(personServiceImpl.getAllPeople())
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return ResponseEntity<Any>(HttpStatus.BAD_REQUEST)
+        }
+
+
     }
 
     @Throws(Exception::class)
@@ -33,7 +50,7 @@ class PersonController(val personServiceImpl: PersonServiceImpl, val personServi
 
         val created: Person = Gson().fromJson(person, Person::class.java)
         personServiceImpl.createPerson(created)
-        personServiceElasticsearchImpl.createPerson(created)
+        //∂ esPersonClient.createPerson(created)
         return ResponseEntity.ok(created)
 
 
