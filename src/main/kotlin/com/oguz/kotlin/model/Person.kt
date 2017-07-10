@@ -10,7 +10,7 @@ import javax.persistence.*
 /**
  * Created by oguzhankaracullu on 11/06/2017.
  */
-//@Document(indexName = "people_1_june", type = "people_type", createIndex = true )
+//@Document(indexName = "people_1_june", type = "people_type", putTemplate = true )
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "people", uniqueConstraints = arrayOf(UniqueConstraint(columnNames = arrayOf("username"))))

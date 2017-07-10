@@ -41,8 +41,12 @@ class PersonController(val personServiceImpl: PersonServiceImpl, val esPersonCli
             return ResponseEntity<Any>(HttpStatus.BAD_REQUEST)
         }
 
-
     }
+    @RequestMapping(method = arrayOf(RequestMethod.PUT), value = "/template")
+    fun putTemplate(): ResponseEntity<*>{
+        return ResponseEntity.ok(esPersonClient.putTemplate())
+    }
+
 
     @Throws(Exception::class)
     @RequestMapping(value = "", method = arrayOf(RequestMethod.POST), produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
